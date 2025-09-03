@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Detalle del Producto</h1>
+{% if producto %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ producto.imagen }}" alt="Imagen del producto">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> {{ producto.id }}</p>
+            <p class="card-text"><strong>Nombre:</strong> {{ producto.titulo }}</p>
+            <p class="card-text"><strong>Precio:</strong> {{ producto.precio }}</p>
+            <p class="card-text"><strong>Categoría:</strong> {{ producto.categoria }}</p>
+        </div>
+    </div>
+{% else %}
+    <p>No se encontró el producto.</p>
+{% endif %}
+<button><a href="/productos">Volver a los Productos</a></button>
+</body>
+</html>
