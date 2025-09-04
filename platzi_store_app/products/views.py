@@ -93,3 +93,15 @@ def actualizar_producto(request, pk):
                 "image_url": datos.get("images", [None])[0]
             }
         return render(request, "actualizar_producto.html", {"producto": producto, "pk": pk})
+
+def eliminar_producto(request, pk):
+    url=f"https://api.escuelajs.co/api/v1/products/{pk}"
+    if request.method == "POST":
+        response=requests.delete(url)
+        if response.status_code == 200:
+            return redirect("productos_view")
+        else:
+            error = response.text
+            return render(request,"lista_productos.html", {"error":error, "pk":pk})
+    else:
+        return redirect("productos_view")

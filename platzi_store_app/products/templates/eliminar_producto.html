@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Producto</title>
+    <title>Detalle producto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -44,10 +44,7 @@
                     </div>
                     <div class="card-footer text-center">
                         <a href="/productos" class="btn btn-dark btn-sm">⬅ Volver a los Productos</a>
-                        <form action="/productos/{{ producto.id }}/eliminar/" method="post" >
-                            {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm">🚮 Eliminar</button>
-                        </form>
+                        <a href="submit" class="btn btn-dark btn-sm">🚮 Eliminar</a>
                     </div>
                 </div>
             </div>
