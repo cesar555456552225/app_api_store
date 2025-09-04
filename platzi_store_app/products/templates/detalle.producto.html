@@ -1,24 +1,61 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detalle del Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+        }
+    </style>
 </head>
 <body>
-    <h1>Detalle del Producto</h1>
-{% if producto %}
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ producto.imagen }}" alt="Imagen del producto">
-        <div class="card-body">
-            <p class="card-text"><strong>ID:</strong> {{ producto.id }}</p>
-            <p class="card-text"><strong>Nombre:</strong> {{ producto.titulo }}</p>
-            <p class="card-text"><strong>Precio:</strong> {{ producto.precio }}</p>
-            <p class="card-text"><strong>Categoría:</strong> {{ producto.categoria }}</p>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/productos">🛒 Mi Tienda</a>
         </div>
+    </nav>
+
+    <div class="container text-center">
+        <h1 class="fw-bold mb-4">Detalle del Producto</h1>
+
+        {% if producto %}
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm">
+                    <img class="card-img-top" src="{{ producto.imagen }}" alt="Imagen del producto">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.titulo }}</h5>
+                        <p class="card-text"><strong>ID:</strong> {{ producto.id }}</p>
+                        <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                        <p class="card-text"><span class="badge bg-primary">{{ producto.categoria }}</span></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/productos" class="btn btn-dark btn-sm">⬅ Volver a los Productos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-danger" role="alert">
+            No se encontró el producto.
+        </div>
+        <a href="/productos" class="btn btn-dark">⬅ Volver a los Productos</a>
+        {% endif %}
     </div>
-{% else %}
-    <p>No se encontró el producto.</p>
-{% endif %}
-<button><a href="/productos">Volver a los Productos</a></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

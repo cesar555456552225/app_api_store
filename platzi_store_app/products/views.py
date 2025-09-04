@@ -1,5 +1,8 @@
 import requests
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.template import loader
 
 
 def consultar_productos():
@@ -37,7 +40,7 @@ def productos_view(request):
     productos = consultar_productos()
     return render(request, "lista_productos.html", {"productos": productos})
 
-from django.shortcuts import redirect
+
 
 def agregar_producto(request):
     if request.method == "POST":
@@ -56,3 +59,7 @@ def agregar_producto(request):
             error = response.text
             return render(request, "agregar_producto.html", {"error": error})
     return render(request, "agregar_producto.html")
+
+def main(request):
+    template = loader.get_template('home.html')
+    return HttpResponse(template.render())
