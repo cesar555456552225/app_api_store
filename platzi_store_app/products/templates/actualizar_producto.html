@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/productos">🛒 Mi Tienda</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="text-center mb-4 fw-bold">Actualizar producto</h1>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Título</label>
+                    <input type="text" name="title" class="form-control" value="{{ producto.title }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Precio</label>
+                    <input type="number" name="price" class="form-control" value="{{ producto.price }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea name="description" class="form-control" rows="3"  value="{{ producto.description }}" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ID Categoría</label>
+                    <input type="number" name="categoryId" class="form-control" value="{{ producto.categoryId }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">URL Imagen</label>
+                    <input type="url" name="image_url" class="form-control" value="{{ producto.image_url }}" required>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="/productos" class="btn btn-secondary">⬅ Volver</a>
+                    <button type="submit" class="btn btn-dark">✅ Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

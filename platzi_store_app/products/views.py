@@ -63,3 +63,33 @@ def agregar_producto(request):
 def main(request):
     template = loader.get_template('home.html')
     return HttpResponse(template.render())
+
+def actualizar_producto(request, pk):
+    url = f"https://api.escuelajs.co/api/v1/products/{pk}"
+    if request.method == "POST":
+        producto = {
+            "title": request.POST.get("title"),
+            "price": int(request.POST.get("price")),
+            "description": request.POST.get("description"),
+            "categoryId": int(request.POST.get("categoryId")),
+            "images": [request.POST.get("image_url")]
+        }
+        response = requests.put(url, json=producto)
+        if response.status_code == 200:
+            return redirect("productos_view")
+        else:
+            error = response.text
+            return render(request, "actualizar_producto.html", {"error": error, "pk": pk})
+    else:
+        response = requests.get(url)
+        producto = None
+        if response.status_code == 200:
+            datos = response.json()
+            producto = {
+                "title": datos.get("title"),
+                "price": datos.get("price"),
+                "description": datos.get("description"),
+                "categoryId": datos.get("category", {}).get("id"),
+                "image_url": datos.get("images", [None])[0]
+            }
+        return render(request, "actualizar_producto.html", {"producto": producto, "pk": pk})
