@@ -16,6 +16,7 @@ def consultar_productos():
                 "id": producto.get("id"),
                 "titulo": producto.get("title"),
                 "precio": producto.get("price"),
+                "descripcion":producto.get("description"),
                 "categoria": producto.get("category", {}).get("name"),
                 "imagen": producto.get("images", [None])[0]
             })

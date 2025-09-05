@@ -19,6 +19,11 @@
             transform: translateY(-5px);
             box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
         }
+        a{
+            text-decoration: none;
+            color: greenyellow;
+            text-align:left;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +34,7 @@
             <a class="navbar-brand fw-bold" href="/">🛒 Tienda Api Store</a>
             <form class="d-flex ms-auto" method="get" action="{% url 'producto_id' pk=0 %}" 
                 onsubmit="event.preventDefault(); window.location.href='/productos/' + document.getElementById('buscar_id').value + '/';">
+                <a href="agregar/" type="btn" class="form.control me 2">➕Agregar producto</a>
                 <input id="buscar_id" class="form-control me-2" type="search" placeholder="Buscar por ID" aria-label="Buscar">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
@@ -51,7 +57,9 @@
                         <h5 class="card-title">{{ producto.titulo }}</h5>
                         <p class="card-text"><strong>ID:</strong> {{ producto.id }}</p>
                         <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                        <p class="card-text"><strong>Descripcion:</strong> {{ producto.descripcion }}</p>
                         <p class="card-text"><span class="badge bg-primary">{{ producto.categoria }}</span></p>
+                        
                     </div>
                     <div class="card-footer text-center">
                         <a href="/productos/{{ producto.id }}/" class="btn btn-dark btn-sm">Ver detalle</a>
