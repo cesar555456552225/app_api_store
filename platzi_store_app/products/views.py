@@ -33,6 +33,7 @@ def producto_id(request, pk):
             "titulo" : datos.get("title"),
             "precio" : datos.get("price"),
             "categoria" : datos.get("category", {}).get("name"),
+            "descripcion": datos.get("description"),
             "imagen" : datos.get("images", [None])[0],
         })
     return render(request, "detalle.producto.html", {"producto": producto})
